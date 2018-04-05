@@ -119,5 +119,58 @@ describe('BlogPost API resource', function() {
 
  });
 
+//put
+ describe('PUT endpoint', function() {
+
+   
+    it('should update post', function() {
+      const updateData = {
+        title: 'Time to go',
+        content: 'Bacon Epsom'
+      };
+
+      return BlogPost
+        .findOne()
+        .then(function(blogPost) {
+          updateData.id = blogPost.id;
+
+          return chai.request(app)
+            .put(`/posts/${blogPost.id}`)
+            .send(updateData);
+        })
+        .then(function(res) {
+          expect(res).to.have.status(204);
+
+          return BlogPost.findById(updateData.id);
+        })
+        .then(function(blogPost) {
+          expect(blogPost.title).to.equal(updateData.title);
+          expect(blogPost.content).to.equal(updateData.content);
+        });
+    });
+  });
+
+//delete
+  describe('DELETE endpoint', function() {
+    
+    it('delete a post by id', function() {
+
+      let blogPost;
+
+      return BlogPost
+        .findOne()
+        .then(function(_blogPost) {
+          blogPost = _blogPost;
+          return chai.request(app).delete(`/posts/${blogPost.id}`);
+        })
+        .then(function(res) {
+          expect(res).to.have.status(204);
+          return BlogPost.findById(blogPost.id);
+        })
+        .then(function(_blogPost) {
+          expect(_blogPost).to.be.null;
+        });
+    });
+  });
 
 });
