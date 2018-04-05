@@ -66,7 +66,7 @@ describe('BlogPost API resource', function() {
    return closeServer();
  });
 
-
+ 
  describe('Get endpoint', function() {
   
   it('should return all blog posts', function() {
