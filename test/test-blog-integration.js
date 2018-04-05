@@ -87,7 +87,7 @@ describe('BlogPost API resource', function() {
   });
 
  });
-
+ 
 
  describe('Post endpoint', function() {
  	it('should add a new blog post', function() { 
