@@ -2,3 +2,7 @@ language: node_js
 node_js: node
 services:
 - mongodb
+deploy:
+  provider: heroku
+  api_key: "ede85426-87b6-484f-a478-5359ee823595"
+  app: tranquil-sea-63131

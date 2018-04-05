@@ -14,6 +14,11 @@ const app = express();
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
+
 app.get('/posts', (req, res) => {
   BlogPost
     .find()
